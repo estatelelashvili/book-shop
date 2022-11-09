@@ -1,0 +1,9 @@
+.main-container{
+    width: 1280px;
+    margin: auto;
+}
+
+.catalog-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
