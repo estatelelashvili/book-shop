@@ -117,27 +117,85 @@ function appendData(data) {
   detailedInformationContainer.className = 'detailed-information-container';
   let disableShowMore = true;
 
-  // data.forEach((element) => {
-  //   const bookPad = document.createElement('div');
-  //   bookPad.className = 'book-pad';
-  //   const bookInfo = document.createElement('div');
-  //   bookInfo.className = 'book-info';
-  //   const bookImage = document.createElement('img');
-  //   const addedPath = '../assets/';
-  //   bookImage.src = addedPath + element.imageLink;
-  //   const title = document.createElement('p');
-  //   title.innerText = element.title;
-  //   const author = document.createElement('p');
-  //   author.innerText = element.author;
-  //   const price = document.createElement('p');
-  //   price.innerText = element.price;
-  //   bookPad.append(bookImage);
-  //   bookInfo.append(title);
-  //   bookInfo.append(author);
-  //   bookInfo.append(price);
-  //   bookPad.append(bookInfo);
-  //   bookContainer.append(bookPad);
-  // });
+  data.forEach((element, i) => {
+    const addedPath = '../assets/';
+    const bookImage = document.createElement('img');
+    bookImage.src = addedPath + element.imageLink;
+
+    const wrapper = document.createElement('div');
+    const info = document.createElement('div');
+
+    const card = document.createElement('div');
+
+    const overlay = document.createElement('div');
+    const text = document.createElement('div');
+    // const image = document.createElement('img');
+    bookImage.className = 'thumbnail-image';
+    const title = document.createElement('h4');
+    const author = document.createElement('h5');
+    const price = document.createElement('span');
+
+    const slideUpPrice = document.createElement('p');
+    const slideUpTitle = document.createElement('p');
+    const slideUpAuthor = document.createElement('p');
+    const btnAddToCart = document.createElement('button');
+    const imgAddToCart = document.createElement('img');
+    btnAddToCart.className = 'btn-add-2-basket';
+    imgAddToCart.className = 'tiny-img';
+    imgAddToCart.src = '../assets/icons/shopping_bag_icon_153998.ico';
+    btnAddToCart.appendChild(imgAddToCart);
+    let add2Cartext = document.createTextNode('Add to Bag');
+    add2Cartext.className = 'btn-add-2-basket-text-node';
+    btnAddToCart.appendChild(add2Cartext);
+    // let imagSrc = element.imageLink;
+    slideUpPrice.className = 'slide-up-price';
+    slideUpTitle.className = 'slide-up-title';
+    slideUpAuthor.className = 'slide-up-author';
+
+    slideUpPrice.innerHTML = element.price + '$';
+    slideUpTitle.innerHTML = element.title;
+    slideUpAuthor.innerHTML = element.author;
+
+    bookImage.setAttribute('id', `${i}`);
+
+    let detailedInformation = document.createElement('div');
+    let btnInfoX = document.createElement('button');
+    detailedInformation.className = 'detailed-information';
+    btnInfoX.className = 'btn-info-x';
+    btnInfoX.textContent = 'X';
+
+    btnInfoX.addEventListener('click', hideDetails);
+    function hideDetails() {
+      disableShowMore = true;
+      detailedInformation.style.display = 'none';
+    }
+    const descriptionPopUp = document.createElement('p');
+    const disPhoto = document.createElement('img');
+    disPhoto.src = addedPath + element.imageLink;
+    descriptionPopUp.innerText = element.description;
+    detailedInformation.appendChild(btnInfoX);
+    detailedInformation.appendChild(descriptionPopUp);
+    detailedInformationContainer.appendChild(detailedInformation);
+    fragment.appendChild(detailedInformationContainer);
+    const btnShowMore = document.createElement('button');
+    btnShowMore.className = 'btn-add-2-basket';
+    let ShowMoretext = document.createTextNode('Show more');
+    ShowMoretext.className = 'ShowMoretext-text-node';
+    const imgMore = document.createElement('img');
+    imgMore.className = 'tiny-img2';
+    imgMore.src = '../assets/icons/NicePng_eye-black-png_3831917.png';
+    btnShowMore.appendChild(imgMore);
+    btnShowMore.appendChild(ShowMoretext);
+    btnShowMore.addEventListener('click', showDetails);
+    function showDetails() {
+      if (disableShowMore) {
+        disableShowMore = false;
+        detailedInformation.style.display = 'block';
+      }
+    }
+    babyCart.append(testTable);
+    // btnAddToCart.addEventListener('click', addBookToBasket);
+  });
 
   fragment.append(container);
   document.body.append(fragment);
