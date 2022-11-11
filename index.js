@@ -31,6 +31,10 @@ function appendData(data) {
 
   btnOurBooks.onclick = function () {
     location.href = '#header';
+
+    setTimeout(() => {
+      bgImage.remove();
+    }, 600);
   };
 
   capt.appendChild(sp1);
@@ -73,14 +77,14 @@ function appendData(data) {
   let itemCountText = document.createElement('p');
   itemCountText.textContent = `${itemCount}`;
   itemCountText.className = 'item-count-text';
-  // btnToggleCartText.textContent = ;
+
   btnToggleCart.appendChild(btnToggleCartText);
   btnToggleCart.appendChild(btnToggleCartIMG);
   btnToggleCart.appendChild(itemCountText);
-  // btnToggleCart.textContent = `Show Cart of ${itemCount} items`;
+
   btnOrder.textContent = 'Confirm order';
   btnToggleCart.className = 'btn-ToggleCart';
-  // btnOrder.style.cssText = `position: absolute; top: 25%; left: 0; width: 100px`;
+
   btnOrder.style.cssText = `position:absolute;  width: 115px; left: 15%;
   bottom: 10px;`;
 
@@ -108,7 +112,7 @@ function appendData(data) {
     itemCount = 0;
     specialPriceTag = 0;
     totalPrice.textContent = `Total: ${specialPriceTag}$`;
-    // btnToggleCart.textContent = `Show Cart of ${itemCount} items`;
+
     itemCountText.textContent = `${itemCount}`;
   };
 
@@ -172,14 +176,8 @@ function appendData(data) {
   function allowDrop(ev) {
     ev.preventDefault();
   }
-  // babyCart.addEventListener("dragover", allowDrop);
-  // // grandCartCont.addEventListener("dragover", allowDrop);
-  // function allowDrop(ev) {
-  //   ev.preventDefault();
-  // }
 
   cartContainer.addEventListener('drop', drop);
-  // babyCart.addEventListener("drop", drop);
   grandCartCont.addEventListener('drop', drop);
 
   function drop(ev) {
@@ -228,7 +226,6 @@ function appendData(data) {
       let empArr = [];
       const collection = document.getElementsByClassName('elm-p');
       itemCount = collection.length;
-      // btnToggleCart.textContent = `Show Cart of ${itemCount} items`;
       itemCountText.textContent = `${itemCount}`;
 
       for (let i = 0; i < collection.length; i++) {
@@ -253,7 +250,6 @@ function appendData(data) {
         middleRow2.remove();
         const collection = document.getElementsByClassName('elm-p');
         itemCount = collection.length;
-        // btnToggleCart.textContent = `Show Cart of ${itemCount} items`;
         itemCountText.textContent = `${itemCount}`;
       };
     }
@@ -261,7 +257,7 @@ function appendData(data) {
     ev.preventDefault();
   }
 
-  //BIG LOOP STARTS HERE
+  //CATALOG LOOP STARTS HERE
 
   for (var i = 0; i < data.length; i++) {
     const wrapper = document.createElement('div');
@@ -293,11 +289,10 @@ function appendData(data) {
     slideUpPrice.className = 'slide-up-price';
     slideUpTitle.className = 'slide-up-title';
     slideUpAuthor.className = 'slide-up-author';
-    // btnAddToCart.className = "btn-add-to-cart";
+
     slideUpPrice.innerHTML = data[i].price + '$';
     slideUpTitle.innerHTML = data[i].title;
     slideUpAuthor.innerHTML = data[i].author;
-    // btnAddToCart.innerHTML = "add to cart";
 
     image.setAttribute('id', `${i}`);
 
@@ -317,11 +312,9 @@ function appendData(data) {
     disPhoto.src = data[i].imageLink;
     descriptionPopUp.innerText = data[i].description;
     detailedInformation.appendChild(btnInfoX);
-    // detailedInformation.appendChild(disPhoto);
     detailedInformation.appendChild(descriptionPopUp);
     detailedInformationContainer.appendChild(detailedInformation);
     fragment.appendChild(detailedInformationContainer);
-    /////////////////////////////////////
 
     const btnShowMore = document.createElement('button');
     btnShowMore.className = 'btn-add-2-basket';
@@ -332,7 +325,6 @@ function appendData(data) {
     imgMore.src = './images/NicePng_eye-black-png_3831917.png';
     btnShowMore.appendChild(imgMore);
     btnShowMore.appendChild(ShowMoretext);
-    // btnShowMore.innerHTML = "Show more";
     btnShowMore.addEventListener('click', showDetails);
     function showDetails() {
       if (disableShowMore) {
@@ -340,7 +332,9 @@ function appendData(data) {
         detailedInformation.style.display = 'block';
       }
     }
+
     babyCart.append(testTable);
+
     btnAddToCart.addEventListener('click', addBookToBasket);
     function addBookToBasket() {
       let elmInfo = document.createElement('div');
@@ -382,12 +376,12 @@ function appendData(data) {
         middleRow.appendChild(titleTD);
         middleRow.appendChild(priceTD);
         middleRow.appendChild(btnXTD);
+
         testTable.appendChild(middleRow);
 
         let empArr = [];
         const collection = document.getElementsByClassName('elm-p');
         itemCount = collection.length;
-        // btnToggleCart.textContent = `Show Cart of ${itemCount} items`;
         itemCountText.textContent = `${itemCount}`;
 
         for (let i = 0; i < collection.length; i++) {
@@ -400,8 +394,7 @@ function appendData(data) {
 
         specialPriceTag = sumArr.reduce((p, c) => p + c);
         totalPrice.textContent = `Total: ${specialPriceTag}$`;
-        console.log(typeof specialPriceTag);
-        // titleAll.textContent += slideUpTitle.textContent;
+
         btnX.onclick = function () {
           val = parseInt(total.textContent) - parseInt(elmP.textContent);
           total.textContent = val.toString();
@@ -413,7 +406,6 @@ function appendData(data) {
           middleRow.remove();
           const collection = document.getElementsByClassName('elm-p');
           itemCount = collection.length;
-          // btnToggleCart.textContent = `Show Cart of ${itemCount} items`;
           itemCountText.textContent = `${itemCount}`;
         };
       }
@@ -459,14 +451,12 @@ function appendData(data) {
   grandCartCont.appendChild(dragHereMSG);
 
   dragHereMSG.visibility = 'hidden';
+
   function dragEnded(ev) {
-    // grandCartCont.innerText = "drap here";
     grandCartCont.style.cssText = 'border: none';
     btnToggleCart.style.visibility = 'visible';
     dragHereMSG.innerText = '';
     dragHereMSG.visibility = 'hidden';
-    // alert("drag started");
-    // alert("tel me when");
     ev.dataTransfer.setData('text', ev.target.id);
   }
   function drag(ev) {
@@ -474,9 +464,6 @@ function appendData(data) {
     btnToggleCart.style.visibility = 'hidden';
     dragHereMSG.innerText = 'drop here...';
     dragHereMSG.visibility = 'visible';
-    // grandCartCont.innerText = "drap here";
-    // btnToggleCart.innerText = "drap here";
-    // alert("drag started");
     agent_1 = ev.target.id;
     ev.dataTransfer.setData('text', ev.target.id);
   }
