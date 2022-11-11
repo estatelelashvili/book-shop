@@ -262,11 +262,12 @@ function appendData(data) {
   for (var i = 0; i < data.length; i++) {
     const wrapper = document.createElement('div');
     const info = document.createElement('div');
-
+    const btnContainer = document.createElement('div');
+    btnContainer.className = 'btn-container';
     const card = document.createElement('div');
 
-    const overlay = document.createElement('div');
-    const text = document.createElement('div');
+    // const overlay = document.createElement('div');
+    // const text = document.createElement('div');
     const image = document.createElement('img');
     image.setAttribute('id', 'thumbnail-image-id');
     image.className = 'thumbnail-image';
@@ -274,9 +275,9 @@ function appendData(data) {
     const author = document.createElement('h5');
     const price = document.createElement('span');
 
-    const slideUpPrice = document.createElement('p');
-    const slideUpTitle = document.createElement('p');
-    const slideUpAuthor = document.createElement('p');
+    // const slideUpPrice = document.createElement('p');
+    // const slideUpTitle = document.createElement('p');
+    // const slideUpAuthor = document.createElement('p');
     const btnAddToCart = document.createElement('button');
     const imgAddToCart = document.createElement('img');
     btnAddToCart.className = 'btn-add-2-basket';
@@ -287,13 +288,13 @@ function appendData(data) {
     add2Cartext.className = 'btn-add-2-basket-text-node';
     btnAddToCart.appendChild(add2Cartext);
     let imagSrc = data[i].imageLink;
-    slideUpPrice.className = 'slide-up-price';
-    slideUpTitle.className = 'slide-up-title';
-    slideUpAuthor.className = 'slide-up-author';
+    // slideUpPrice.className = 'slide-up-price';
+    // slideUpTitle.className = 'slide-up-title';
+    // slideUpAuthor.className = 'slide-up-author';
 
-    slideUpPrice.innerHTML = data[i].price + '$';
-    slideUpTitle.innerHTML = data[i].title;
-    slideUpAuthor.innerHTML = data[i].author;
+    // slideUpPrice.innerHTML = data[i].price + '$';
+    // slideUpTitle.innerHTML = data[i].title;
+    // slideUpAuthor.innerHTML = data[i].author;
 
     image.setAttribute('id', `${i}`);
 
@@ -301,7 +302,7 @@ function appendData(data) {
     let btnInfoX = document.createElement('button');
     detailedInformation.className = 'detailed-information';
     btnInfoX.className = 'btn-info-x';
-    btnInfoX.textContent = 'X';
+    btnInfoX.textContent = 'close';
 
     btnInfoX.addEventListener('click', hideDetails);
     function hideDetails() {
@@ -352,12 +353,15 @@ function appendData(data) {
 
       btnX.className = 'btn-x';
       btnX.innerHTML = 'X';
-      elmP.innerHTML = slideUpPrice.textContent;
-      elmT.innerHTML = slideUpTitle.textContent;
-      elmA.innerHTML = slideUpAuthor.textContent;
+      elmP.innerHTML = price.textContent;
+      elmT.innerHTML = title.textContent;
+      elmA.innerHTML = author.textContent;
+      // elmP.innerHTML = slideUpPrice.textContent;
+      // elmT.innerHTML = slideUpTitle.textContent;
+      // elmA.innerHTML = slideUpAuthor.textContent;
       elmImage.src = imagSrc;
       elmImage.style.cssText = `background-color: red;`;
-      if (cart.textContent.includes(slideUpPrice.textContent)) {
+      if (cart.textContent.includes(price.textContent)) {
       } else {
         let middleRow = document.createElement('tr');
         middleRow.style.cssText = `display: flex; align-items: center;`;
@@ -416,8 +420,8 @@ function appendData(data) {
     info.className = 'info';
     card.className = 'card';
 
-    overlay.className = 'overlay';
-    text.className = 'text';
+    // overlay.className = 'overlay';
+    // text.className = 'text';
     title.className = 'title';
     author.className = 'author';
     price.className = 'price';
@@ -430,16 +434,18 @@ function appendData(data) {
     info.appendChild(title);
     info.appendChild(author);
     info.appendChild(price);
+    btnContainer.appendChild(btnAddToCart);
+    btnContainer.appendChild(btnShowMore);
+    info.appendChild(btnContainer);
+    // text.appendChild(slideUpPrice);
+    // text.appendChild(slideUpTitle);
+    // text.appendChild(slideUpAuthor);
+    // text.appendChild(btnAddToCart);
+    // text.appendChild(btnShowMore);
 
-    text.appendChild(slideUpPrice);
-    text.appendChild(slideUpTitle);
-    text.appendChild(slideUpAuthor);
-    text.appendChild(btnAddToCart);
-    text.appendChild(btnShowMore);
+    // overlay.appendChild(text);
 
-    overlay.appendChild(text);
-
-    card.appendChild(overlay);
+    // card.appendChild(overlay);
     card.appendChild(info);
 
     wrapper.appendChild(card);
@@ -461,13 +467,21 @@ function appendData(data) {
     ev.dataTransfer.setData('text', ev.target.id);
   }
   function drag(ev) {
-    grandCartCont.style.cssText = 'border: silver dashed 2px; height: 75px';
+    grandCartCont.style.cssText = 'border: silver dashed 2px; height: 146px';
     btnToggleCart.style.visibility = 'hidden';
     dragHereMSG.innerText = 'drop here...';
     dragHereMSG.visibility = 'visible';
     agent_1 = ev.target.id;
     ev.dataTransfer.setData('text', ev.target.id);
   }
+
+  const footer = document.createElement('footer');
+  footer.className = 'footer-container';
+  const bookShopAuthorP = document.createElement('p');
+  bookShopAuthorP.innerText = 'Estate Lelashvili';
+  footer.appendChild(bookShopAuthorP);
+
   fragment.append(container);
+  fragment.append(footer);
   document.body.appendChild(fragment);
 }
