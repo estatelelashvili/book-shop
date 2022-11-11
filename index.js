@@ -65,7 +65,7 @@ function appendData(data) {
   let cartContainer = document.createElement('div');
   cartContainer.className = 'cart-container';
 
-  //Cart show/hide toggle button
+  //CART SHOW/HIDE TOGGLE
   let btnToggleCart = document.createElement('button');
   let btnToggleCartIMG = document.createElement('img');
   btnToggleCartIMG.className = 'btn-ToggleCart-img';
@@ -91,7 +91,7 @@ function appendData(data) {
   let cart = document.createElement('div');
   let babyCart = document.createElement('div');
 
-  //Total price p tag
+  //TOTAL PRICE TAG
   let totalPrice = document.createElement('p');
   let hrCart = document.createElement('hr');
   let unorderedList = document.createElement('ul');
@@ -136,7 +136,7 @@ function appendData(data) {
   cart.appendChild(clearAll);
   cart.appendChild(btnOrder);
 
-  //Table
+  //TABLE
 
   let testTable = document.createElement('table');
 
@@ -156,7 +156,7 @@ function appendData(data) {
     location.href = 'OrderForm.html';
   };
 
-  //Cart append elements
+  //CART APPEND ELEMENTS
   cart.appendChild(babyCart);
   cartContainer.appendChild(cart);
 
@@ -268,6 +268,7 @@ function appendData(data) {
     const overlay = document.createElement('div');
     const text = document.createElement('div');
     const image = document.createElement('img');
+    image.setAttribute('id', 'thumbnail-image-id');
     image.className = 'thumbnail-image';
     const title = document.createElement('h4');
     const author = document.createElement('h5');
@@ -460,7 +461,7 @@ function appendData(data) {
     ev.dataTransfer.setData('text', ev.target.id);
   }
   function drag(ev) {
-    grandCartCont.style.cssText = 'border: silver dashed 2px';
+    grandCartCont.style.cssText = 'border: silver dashed 2px; height: 75px';
     btnToggleCart.style.visibility = 'hidden';
     dragHereMSG.innerText = 'drop here...';
     dragHereMSG.visibility = 'visible';
