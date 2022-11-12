@@ -476,10 +476,21 @@ function appendData(data) {
   }
 
   const footer = document.createElement('footer');
-  footer.className = 'footer-container';
-  const bookShopAuthorP = document.createElement('p');
+  const authorContainer = document.createElement('div');
+  const footerInfo = document.createElement('div');
+  authorContainer.className = 'author-info';
+  footerInfo.className = 'footer-info';
+  const bookShopAuthorP = document.createElement('span');
+  const copyR = document.createElement('span');
+  const date = document.createElement('span');
   bookShopAuthorP.innerText = 'Estate Lelashvili';
-  footer.appendChild(bookShopAuthorP);
+  copyR.innerHTML = '&copy';
+  authorContainer.appendChild(bookShopAuthorP);
+  authorContainer.appendChild(copyR);
+  date.innerText = '11.11.2022';
+  footerInfo.appendChild(authorContainer);
+  footerInfo.appendChild(date);
+  footer.appendChild(footerInfo);
 
   fragment.append(container);
   fragment.append(footer);
