@@ -118,6 +118,7 @@ function appendData(data) {
     totalPrice.textContent = `Total: ${specialPriceTag}$`;
 
     itemCountText.textContent = `${itemCount}`;
+    cart.style.display = 'none';
   };
 
   let specialPriceTag = 0;
@@ -481,7 +482,8 @@ function appendData(data) {
     btnToggleCart.style.visibility = 'hidden';
     container.className = 'container-alt';
     // container.style.cssText = 'margin-top: 93px';
-    dragHereMSG.innerText = 'drop here...';
+    cart.style.display = 'none';
+    dragHereMSG.innerText = 'drag & drop here...';
     dragHereMSG.visibility = 'visible';
     agent_1 = ev.target.id;
     ev.dataTransfer.setData('text', ev.target.id);
