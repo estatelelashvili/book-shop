@@ -110,6 +110,17 @@ background-size: cover;
     grid-template-columns: repeat(5, 1fr);
     row-gap: 2rem;
 }
+.container-alt{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 93px;
+    margin-bottom: 50px;
+    background-color: white;
+    /* background-color: aliceblue; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 2rem;
+}
 
 
 .wrapper{
@@ -344,11 +355,23 @@ h1{
   }
 
   .grand-cart-container{
+    /* visibility: hidden; */
     position: relative;
     width: 170px;
     height: 150px;
     top: 10px;
+    /* left: 60%; */
     left: 60%;
+    z-index: 7;
+    border: none;
+}
+  .grand-cart-container-alter{
+    border: silver dashed 2px; 
+    height: 220px; width: 220px; 
+    background-color: aliceblue;
+    top: 10px; 
+    left: 60%;
+    position: fixed;
     z-index: 7;
 }
 
@@ -361,7 +384,8 @@ margin-bottom: 22px;
 .btn-ToggleCart{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bolder;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: aliceblue;
   position: absolute; 
   top: 5%; 
   left: 1%; 
@@ -396,10 +420,12 @@ margin-bottom: 22px;
 }
 
 .drag-here-msg{
-  padding-top:25px;
+  /* background-color: aliceblue; */
+  padding-top:35px;
   text-transform: uppercase;
   color: gray;
   font-weight: 500;
+  font-size: 20px;
   position: absolute;
   top: 15%;
   left:20%;

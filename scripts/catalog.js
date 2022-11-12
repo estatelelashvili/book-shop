@@ -1,4 +1,4 @@
-fetch('./books.json')
+fetch('../books.json')
   .then(function (response) {
     return response.json();
   })
@@ -60,8 +60,12 @@ function appendData(data) {
   fragment.append(header);
 
   let grandCartCont = document.createElement('div');
+  grandCartCont.setAttribute('id', 'grand-id');
   grandCartCont.className = 'grand-cart-container';
 
+  // alert('hi');
+
+  // if (!checkVisible(bgImage)) grandCartCont.style.visibility = 'visible';
   let cartContainer = document.createElement('div');
   cartContainer.className = 'cart-container';
 
@@ -69,7 +73,7 @@ function appendData(data) {
   let btnToggleCart = document.createElement('button');
   let btnToggleCartIMG = document.createElement('img');
   btnToggleCartIMG.className = 'btn-ToggleCart-img';
-  btnToggleCartIMG.src = './images/shopping_bag_icon_153998.ico';
+  btnToggleCartIMG.src = '../images/shopping_bag_icon_153998.ico';
 
   let btnOrder = document.createElement('button');
   let itemCount = 0;
@@ -153,7 +157,7 @@ function appendData(data) {
   //REDIRECT TO ORDER PAGE
 
   btnOrder.onclick = function () {
-    location.href = 'OrderForm.html';
+    location.href = 'deliveryForm.html';
   };
 
   //CART APPEND ELEMENTS
@@ -282,12 +286,13 @@ function appendData(data) {
     const imgAddToCart = document.createElement('img');
     btnAddToCart.className = 'btn-add-2-basket';
     imgAddToCart.className = 'tiny-img';
-    imgAddToCart.src = './images/shopping_bag_icon_153998.ico';
+    imgAddToCart.src = '../images/shopping_bag_icon_153998.ico';
     btnAddToCart.appendChild(imgAddToCart);
     let add2Cartext = document.createTextNode('Add to Bag');
     add2Cartext.className = 'btn-add-2-basket-text-node';
     btnAddToCart.appendChild(add2Cartext);
     let imagSrc = data[i].imageLink;
+
     // slideUpPrice.className = 'slide-up-price';
     // slideUpTitle.className = 'slide-up-title';
     // slideUpAuthor.className = 'slide-up-author';
@@ -324,7 +329,7 @@ function appendData(data) {
     ShowMoretext.className = ' ShowMoretext-text-node';
     const imgMore = document.createElement('img');
     imgMore.className = 'tiny-img2';
-    imgMore.src = './images/NicePng_eye-black-png_3831917.png';
+    imgMore.src = '../images/NicePng_eye-black-png_3831917.png';
     btnShowMore.appendChild(imgMore);
     btnShowMore.appendChild(ShowMoretext);
     btnShowMore.addEventListener('click', showDetails);
@@ -460,15 +465,22 @@ function appendData(data) {
   dragHereMSG.visibility = 'hidden';
 
   function dragEnded(ev) {
-    grandCartCont.style.cssText = 'border: none';
+    // grandCartCont.style.cssText = 'border: none';
+    grandCartCont.className = 'grand-cart-container';
+    // container.style.cssText = 'margin-top: 20px';
+    container.className = 'container';
     btnToggleCart.style.visibility = 'visible';
     dragHereMSG.innerText = '';
     dragHereMSG.visibility = 'hidden';
     ev.dataTransfer.setData('text', ev.target.id);
   }
   function drag(ev) {
-    grandCartCont.style.cssText = 'border: silver dashed 2px; height: 146px';
+    grandCartCont.className = 'grand-cart-container-alter';
+    // grandCartCont.style.cssText =
+    //   'border: silver dashed 2px; height: 250px; width: 250px; background-color: aliceblue; position: fixed;';
     btnToggleCart.style.visibility = 'hidden';
+    container.className = 'container-alt';
+    // container.style.cssText = 'margin-top: 93px';
     dragHereMSG.innerText = 'drop here...';
     dragHereMSG.visibility = 'visible';
     agent_1 = ev.target.id;
@@ -495,4 +507,16 @@ function appendData(data) {
   fragment.append(container);
   fragment.append(footer);
   document.body.appendChild(fragment);
+}
+
+function isScrolledIntoView(el) {
+  var rect = el.getBoundingClientRect();
+  var elemTop = rect.top;
+  var elemBottom = rect.bottom;
+
+  // Only completely visible elements return true:
+  var isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
+  // Partially visible elements return true:
+  //isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+  return isVisible;
 }
