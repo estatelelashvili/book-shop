@@ -501,7 +501,7 @@ function appendData(data) {
   copyR.innerHTML = '&copy';
   authorContainer.appendChild(bookShopAuthorP);
   authorContainer.appendChild(copyR);
-  date.innerText = '11.11.2022';
+  date.innerText = '14.11.2022';
   footerInfo.appendChild(authorContainer);
   footerInfo.appendChild(date);
   footer.appendChild(footerInfo);
