@@ -318,3 +318,12 @@ closePopUpBtn.addEventListener('click', () => {
   // location.href = "./OrderForm.html";
   nameField.focus();
 });
+
+function handleEnter(event) {
+  if (event.key === 'Enter') {
+    const form = document.getElementById('myForm');
+    const index = [...form].indexOf(event.target);
+    form.elements[index + 1].focus();
+    event.preventDefault();
+  }
+}
