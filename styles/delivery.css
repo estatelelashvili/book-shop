@@ -1,16 +1,17 @@
 body{
-    background-color: #e8dcB8;
+  background-color: #e8dcB8;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
 
 
 .input-name{
   display: flex;
-   margin-left: 53px;
-  }
+   margin-left: 60px;
+}
 .input-surname{
   display: flex;
-    margin-left: 35px;
+    margin-left: 40px;
   }
 .input-date{
   display: flex;
@@ -18,7 +19,7 @@ body{
   }
 .input-street{
   display: flex;
-    margin-left: 4px;
+    margin-left: 58px;
   }
 .input-house{
   display: flex;
@@ -207,4 +208,8 @@ footer{
   display: flex;
   width: 150px;
   justify-content: space-evenly;
+}
+
+label{
+  margin-right: 5px;
 }
