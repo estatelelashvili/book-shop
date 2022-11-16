@@ -6,6 +6,7 @@ let StreetField = document.getElementById('field_street');
 let HouseField = document.getElementById('field_house');
 let FlatField = document.getElementById('field_flat');
 let PaymentField = document.getElementById('field_payment');
+let GiftsField = document.getElementById('field_gifts');
 
 let validName = false;
 let validSurName = false;
@@ -16,10 +17,11 @@ let validFlate = false;
 let validPayment = false;
 
 window.onload = function () {
+  checkBTN();
   nameField.focus();
 };
 let warnPopName = document.getElementById('warn-pop-up-name');
-nameField.addEventListener('mouseleave', checkBTN);
+// nameField.addEventListener('mouseleave', checkBTN);
 nameField.addEventListener('input', function () {
   let val = document.getElementById('field_name').value;
   let el = document.getElementById('field_name');
@@ -32,10 +34,10 @@ nameField.addEventListener('input', function () {
     warnPopName.style.visibility = 'visible';
     validName = false;
   }
+  checkBTN();
 });
 nameField.addEventListener('blur', checkBTN);
 nameField.addEventListener('focusout', function () {
-  // SurNameField.focus();
   let val = document.getElementById('field_name').value;
   let el = document.getElementById('field_name');
   if (val.length < 4) {
@@ -50,7 +52,7 @@ nameField.addEventListener('focusout', function () {
 });
 
 let warnPopSurName = document.getElementById('warn-pop-up-surname');
-SurNameField.addEventListener('input', checkBTN);
+
 SurNameField.addEventListener('input', function () {
   let val = document.getElementById('field_surname').value;
   let el = document.getElementById('field_surname');
@@ -63,11 +65,11 @@ SurNameField.addEventListener('input', function () {
     warnPopSurName.style.visibility = 'visible';
     validSurName = false;
   }
+  checkBTN();
 });
-document.addEventListener('mousemove', checkBTN);
-SurNameField.addEventListener('mouseleave', checkBTN);
+
+// SurNameField.addEventListener('mouseleave', checkBTN);
 SurNameField.addEventListener('focusout', function () {
-  // dateField.focus();
   let val = document.getElementById('field_surname').value;
   let el = document.getElementById('field_surname');
   if (val.length < 5) {
@@ -79,40 +81,20 @@ SurNameField.addEventListener('focusout', function () {
     warnPopSurName.style.visibility = 'hidden';
     validSurName = true;
   }
+  checkBTN();
 });
 
 let dateField = document.getElementById('field_date');
 let warnPopDate = document.getElementById('warn-pop-up-date');
 
-// let userDate = new Date(datePicked);
-// let today = new Date();
-// let tomorrow = today.setDate(tomorrow.getDate() + 1);
-
-dateField.addEventListener('input', checkBTN);
-dateField.addEventListener('mouseleave', function () {
-  let el = document.getElementById('field_date');
-  let today = new Date();
-  let datePicked = document.getElementById('field_date').value;
-  let userDate = new Date(datePicked);
-  if (userDate <= today) {
-    el.className = 'invalid';
-    warnPopDate.style.visibility = 'visible';
-    validDate = false;
-  } else {
-    el.className = 'valid';
-    warnPopDate.style.visibility = 'hidden';
-    validDate = true;
-  }
-});
-dateField.addEventListener('mouseleave', checkBTN);
+// dateField.addEventListener('mouseleave', checkBTN);
 dateField.addEventListener('focusout', function () {
-  // StreetField.focus();
   let el = document.getElementById('field_date');
   let today = new Date();
   let datePicked = document.getElementById('field_date').value;
+
   let userDate = new Date(datePicked);
   if (datePicked && userDate > today) {
-    // console.log(datePicked);
     el.className = 'valid';
     warnPopDate.style.visibility = 'hidden';
     validDate = true;
@@ -121,15 +103,35 @@ dateField.addEventListener('focusout', function () {
     warnPopDate.style.visibility = 'visible';
     validDate = false;
   }
+  checkBTN();
+});
+dateField.addEventListener('change', function () {
+  let el = document.getElementById('field_date');
+  let today = new Date();
+  let datePicked = document.getElementById('field_date').value;
+
+  let userDate = new Date(datePicked);
+  if (datePicked && userDate > today) {
+    el.className = 'valid';
+    warnPopDate.style.visibility = 'hidden';
+    validDate = true;
+  } else {
+    el.className = 'invalid';
+    warnPopDate.style.visibility = 'visible';
+    validDate = false;
+  }
+  checkBTN();
 });
 
 let warnPopStreet = document.getElementById('warn-pop-up-street');
 
-StreetField.addEventListener('mouseleave', checkBTN);
+// StreetField.addEventListener('mouseleave', checkBTN);
 StreetField.addEventListener('input', function () {
   let val = document.getElementById('field_street').value;
   let el = document.getElementById('field_street');
-  if (/^[0-9a-zA-Z]{5,}$/.test(val)) {
+  // /(?!.*-$)^[1-9]+[-0-9]*$/.test(val);
+  // if (/^[0-9a-zA-Z]{1,}[\s0-9a-zA-Z]{1,}$/.test(val)) {
+  if (/^[^-\s]\s*(?:[\w\.]\s*){4,}$/.test(val)) {
     el.className = 'valid';
     warnPopStreet.style.visibility = 'hidden';
     validStreet = true;
@@ -138,25 +140,42 @@ StreetField.addEventListener('input', function () {
     warnPopStreet.style.visibility = 'visible';
     validStreet = false;
   }
+  checkBTN();
 });
-StreetField.addEventListener('mouseleave', checkBTN);
 StreetField.addEventListener('focusout', function () {
-  // HouseField.focus();
   let val = document.getElementById('field_street').value;
   let el = document.getElementById('field_street');
-  if (val.length < 5) {
-    el.className = 'invalid';
-    warnPopStreet.style.visibility = 'visible';
-    validStreet = false;
-  } else {
+
+  // if (/^[^-\s][0-9a-zA-Z\s]{5,}$/.test(val)) {
+  if (/^[^-\s]\s*(?:[\w\.]\s*){4,}$/.test(val)) {
     el.className = 'valid';
     warnPopStreet.style.visibility = 'hidden';
     validStreet = true;
+  } else {
+    el.className = 'invalid';
+    warnPopStreet.style.visibility = 'visible';
+    validStreet = false;
   }
+  checkBTN();
 });
 
+// StreetField.addEventListener('focusout', function () {
+//   let val = document.getElementById('field_street').value;
+//   let el = document.getElementById('field_street');
+//   if (val.length < 5) {
+//     el.className = 'invalid';
+//     warnPopStreet.style.visibility = 'visible';
+//     validStreet = false;
+//   } else {
+//     el.className = 'valid';
+//     warnPopStreet.style.visibility = 'hidden';
+//     validStreet = true;
+//   }
+//   checkBTN();
+// });
+
 let warnPopHouse = document.getElementById('warn-pop-up-house');
-HouseField.addEventListener('mouseleave', checkBTN);
+
 HouseField.addEventListener('input', function () {
   let val = document.getElementById('field_house').value;
   let el = document.getElementById('field_house');
@@ -169,13 +188,13 @@ HouseField.addEventListener('input', function () {
     warnPopHouse.style.visibility = 'visible';
     validHouse = false;
   }
+  checkBTN();
 });
-HouseField.addEventListener('mouseleave', checkBTN);
+// HouseField.addEventListener('mouseleave', checkBTN);
 HouseField.addEventListener('focusout', function () {
-  // FlatField.focus();
   let val = document.getElementById('field_house').value;
   let el = document.getElementById('field_house');
-  if (val.length === 0) {
+  if (val.length === 0 || !/^[1-9]+[0-9]*$/.test(val)) {
     el.className = 'invalid';
     warnPopHouse.style.visibility = 'visible';
     validHouse = false;
@@ -184,14 +203,16 @@ HouseField.addEventListener('focusout', function () {
     warnPopHouse.style.visibility = 'hidden';
     validHouse = true;
   }
+  checkBTN();
 });
 
 let warnPopFlat = document.getElementById('warn-pop-up-flat');
-FlatField.addEventListener('mouseleave', checkBTN);
+
 FlatField.addEventListener('input', function () {
   let val = document.getElementById('field_flat').value;
   let el = document.getElementById('field_flat');
-  if (/^[1-9–]+[-0-9–]*$/.test(val)) {
+  // if (/^[1-9–]+[-0-9–]*$/.test(val)) {
+  if (/(?!.*-$)^[1-9]+[-0-9]*$/.test(val)) {
     el.className = 'valid';
     warnPopFlat.style.visibility = 'hidden';
     validFlate = true;
@@ -200,14 +221,15 @@ FlatField.addEventListener('input', function () {
     warnPopFlat.style.visibility = 'visible';
     validFlate = false;
   }
+  checkBTN();
 });
 
-FlatField.addEventListener('mouseleave', checkBTN);
+// FlatField.addEventListener('mouseleave', checkBTN);
 FlatField.addEventListener('focusout', function () {
   PaymentField.focus();
   let val = document.getElementById('field_flat').value;
   let el = document.getElementById('field_flat');
-  if (val.length === 0) {
+  if (val.length === 0 || !/(?!.*-$)^[1-9]+[-0-9]*$/.test(val)) {
     el.className = 'invalid';
     warnPopFlat.style.visibility = 'visible';
     validFlate = false;
@@ -216,6 +238,7 @@ FlatField.addEventListener('focusout', function () {
     warnPopFlat.style.visibility = 'hidden';
     validFlate = true;
   }
+  checkBTN();
 });
 
 let cashSelected = false;
@@ -224,7 +247,7 @@ let cashField = document.getElementById('cash-radio');
 let cardField = document.getElementById('card-radio');
 let warnPopPayment = document.getElementById('warn-pop-up-payment');
 
-cashField.addEventListener('mouseleave', checkBTN);
+// cashField.addEventListener('mouseleave', checkBTN);
 cashField.addEventListener('change', function () {
   if (cashField.checked) {
     cashSelected = true;
@@ -232,9 +255,10 @@ cashField.addEventListener('change', function () {
     warnPopPayment.style.visibility = 'hidden';
     validPayment = true;
   }
+  checkBTN();
 });
 
-cardField.addEventListener('mouseleave', checkBTN);
+// cardField.addEventListener('mouseleave', checkBTN);
 cardField.addEventListener('change', function () {
   if (cardField.checked) {
     cardSelected = true;
@@ -242,15 +266,16 @@ cardField.addEventListener('change', function () {
     warnPopPayment.style.visibility = 'hidden';
     validPayment = true;
   }
+  checkBTN();
 });
 
-PaymentField.addEventListener('mouseleave', checkBTN);
+// PaymentField.addEventListener('mouseleave', checkBTN);
 PaymentField.addEventListener('focusout', checkBTN);
 
 PaymentField.addEventListener('focusout', function () {
+  GiftsField.focus();
   if (cashField.checked === false && cardField.checked === false) {
     warnPopPayment.style.visibility = 'visible';
-    // validPayment = false;
   }
 });
 
@@ -276,13 +301,6 @@ let fieldArr = [
 ];
 
 function checkBTN() {
-  console.log(validName);
-  console.log(validSurName);
-  console.log(validDate);
-  console.log(validStreet);
-  console.log(validHouse);
-  console.log(validFlate);
-  console.log(validPayment);
   if (
     validName &&
     validDate &&
@@ -293,10 +311,10 @@ function checkBTN() {
     validPayment
   ) {
     btnSubmit.disabled = false;
-    btnSubmit.style.cursor = 'not-allowed;';
+    btnSubmit.style.cursor = 'pointer';
   } else {
     btnSubmit.disabled = true;
-    btnSubmit.style.cursor = 'pointer';
+    btnSubmit.style.cursor = 'not-allowed;';
   }
 }
 
@@ -306,8 +324,7 @@ let customerInfo = document.getElementById('customer-summary');
 let PopUp = document.getElementById('popM');
 
 btnSubmit.addEventListener('click', (ev) => {
-  // alert("good so far");
-  addressInfo.innerText = `The delivery address is: ${StreetField.value} ${HouseField.value} ${FlatField.value}.`;
+  addressInfo.innerText = `The delivery address is: ${StreetField.value} street, house ${HouseField.value}, flat ${FlatField.value}.`;
   customerInfo.innerText = `Customer: ${nameField.value} ${SurNameField.value}.`;
   PopUp.style.display = 'block';
   ev.preventDefault();
@@ -315,8 +332,8 @@ btnSubmit.addEventListener('click', (ev) => {
 
 closePopUpBtn.addEventListener('click', () => {
   PopUp.style.display = 'none';
-  // location.href = "./OrderForm.html";
   nameField.focus();
+  // location.href = '../pages/catalogPage.html';
 });
 
 function handleEnter(event) {
@@ -324,6 +341,7 @@ function handleEnter(event) {
     const form = document.getElementById('myForm');
     const index = [...form].indexOf(event.target);
     form.elements[index + 1].focus();
+    console.log(form.elements);
     event.preventDefault();
   }
 }

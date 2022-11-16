@@ -26,7 +26,7 @@
       </div>
       <form id="myForm" action="#">
         <div class="name-container">
-          <label for="">Name:</label>
+          <label for="">Name</label>
           <div class="input-name">
             <input
               onkeydown="handleEnter(event)"
@@ -41,7 +41,7 @@
         </div>
         <br />
         <div class="name-container">
-          <label for="">Surname:</label>
+          <label for="">Surname</label>
           <div class="input-surname">
             <input
               onkeydown="handleEnter(event)"
@@ -56,7 +56,7 @@
         </div>
         <br />
         <div class="name-container">
-          <label for="">Delivery date:</label>
+          <label for="">Delivery date</label>
           <div class="input-date">
             <input
               onkeydown="handleEnter(event)"
@@ -71,7 +71,7 @@
         </div>
         <br />
         <div class="name-container">
-          <label for="">Street number:</label>
+          <label for="">Street</label>
           <div class="input-street">
             <input
               onkeydown="handleEnter(event)"
@@ -86,7 +86,7 @@
         </div>
         <br />
         <div class="name-container">
-          <label for="">House number:</label>
+          <label for="">House number</label>
           <div class="input-house">
             <input
               onkeydown="handleEnter(event)"
@@ -101,7 +101,7 @@
         </div>
         <br />
         <div class="name-container">
-          <label for="">Flat number:</label>
+          <label for="">Flat number</label>
           <div class="input-flat">
             <input
               onkeydown="handleEnter(event)"
@@ -119,8 +119,8 @@
           Choose the payment type:<br />
           <br />
           <div
+            onkeydown="handleEnter(event)"
             id="field_payment"
-            tabindex="0"
             style="
               display: flex;
               align-items: flex-start;
@@ -129,7 +129,6 @@
           >
             <label>
               <input
-                onkeydown="handleEnter(event)"
                 type="radio"
                 name="cash"
                 value="cash"
@@ -140,7 +139,6 @@
             ><br />
             <label>
               <input
-                onkeydown="handleEnter(event)"
                 style="margin-left: 5px"
                 type="radio"
                 name="card"
@@ -157,56 +155,58 @@
         <div>
           Choose 2 gifts:<br />
           <br />
-          <label>
-            <input
-              onkeydown="handleEnter(event)"
-              type="checkbox"
-              name="pack"
-              value="pack"
-              id="check-pack"
-              class="check"
-            />
-            Pack as a gift </label
-          ><br />
-          <label>
-            <input
-              onkeydown="handleEnter(event)"
-              type="checkbox"
-              name="postcard"
-              value="postcard"
-              id="check-postcard"
-              class="check"
-            />
-            Add postcard
-          </label>
-          <br />
-          <label>
-            <input
-              onkeydown="handleEnter(event)"
-              type="checkbox"
-              name="discount"
-              value="discount"
-              id="check-discount-radio"
-              class="check"
-            />
-            Provide 2% discount to the next time </label
-          ><br />
-          <label>
-            <input
-              onkeydown="handleEnter(event)"
-              type="checkbox"
-              name="pen"
-              value="pen"
-              id="check-pen"
-              class="check"
-            />
-            Branded pen or pencil
-          </label>
+          <div onkeydown="handleEnter(event)" id="field_gifts">
+            <label>
+              <input
+                type="checkbox"
+                name="pack"
+                value="pack"
+                id="check-pack"
+                class="check"
+              />
+              Pack as a gift </label
+            ><br />
+            <label>
+              <input
+                onkeydown="handleEnter(event)"
+                type="checkbox"
+                name="postcard"
+                value="postcard"
+                id="check-postcard"
+                class="check"
+              />
+              Add postcard
+            </label>
+            <br />
+            <label>
+              <input
+                onkeydown="handleEnter(event)"
+                type="checkbox"
+                name="discount"
+                value="discount"
+                id="check-discount-radio"
+                class="check"
+              />
+              Provide 2% discount to the next time </label
+            ><br />
+            <label>
+              <input
+                onkeydown="handleEnter(event)"
+                type="checkbox"
+                name="pen"
+                value="pen"
+                id="check-pen"
+                class="check"
+              />
+              Branded pen or pencil
+            </label>
+          </div>
         </div>
         <br />
         <br />
         <div class="submit-btn-container">
           <input
+            onkeydown="handleEnter(event)"
             type="submit"
             id="btn-submit"
             name="complete"
