@@ -375,8 +375,8 @@ h1{
 }
 
 .btn-ToggleCart-img{
-height: 45px;
-width: 45px;
+height: 35px;
+width: 35px;
 margin-bottom: 22px;
 }
 
@@ -471,8 +471,8 @@ margin-bottom: 22px;
   margin: 0px 9px 0px 9px;
   border: none;
   border-radius: 50%;
-  color: #fff;
-  background-color: red;
+  color: red;
+  font-weight: bolder;
   height: 25px;
   width: 25px;
   cursor: pointer;
@@ -506,12 +506,12 @@ margin-bottom: 22px;
   
 }
 
-.mini-cart-close-x{
-  margin-right: 10px;
-  background-color: darkgrey;
+.mini-cart-close-x {
+  margin-right: 15px;
+  background-color: #008cba;
   height: 25px;
   width: 25px;
-  text-align: center;
+  font-size: 16px;
   border-radius: 50%;
   border: none;
   color: #fff;
@@ -535,19 +535,9 @@ margin-bottom: 22px;
   overflow: hidden;
 }
 
-/* ul{
-  display: flex;
-  justify-content: space-between;
-}
-
-ul > li{
-  list-style: none;
-  margin: 0 75px 0 0;
-} */
 
 .unordered-list{
   margin-left: 0;
-  /* border: 1px solid red; */
   width: 300px;
   display: flex;
   justify-content: space-between;
@@ -561,20 +551,13 @@ ul > li{
 .list-item-1{
   margin-left: -20px;
   flex: 0.25;
-  /* border: 1px solid green; */
-  /* width: 50px; */
-  /* margin-left: 0; */
 }
 .list-item-2{
   margin-left: 50px;
   flex: 1;
-  /* border: 1px solid green; */
-  /* width: 100px; */
 }
 .list-item-3{
   flex: 0.55;
-  /* border: 1px solid green; */
-  /* width: 100px; */
 }
 
 .detailed-information-container{
@@ -600,6 +583,7 @@ ul > li{
   position: absolute;
   top:0;
   right:0;
+  cursor: pointer;
 }
 
 .grand-order-container{
@@ -640,6 +624,10 @@ footer{
   left: 15%;
   bottom: 10px;
   cursor: pointer;
+  background-color: green;
+  color: #fff;
+  font-weight: bolder;
+  border-radius: 4px;
 }
 
 .btn-clear-all{
@@ -647,5 +635,11 @@ footer{
   width: 75px; 
   left: 55%;
   bottom: 10px;
+  background-color: ghostwhite;
+  color: red;
+  font-weight: bolder;
+  border-radius: 4px;
+  border: 2px solid red;
+  cursor: pointer;
 }
 

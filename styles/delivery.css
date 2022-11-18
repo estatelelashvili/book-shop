@@ -86,10 +86,10 @@ input{
     display: none;
     position: fixed;
     width: 700px;
-    height: 550px;
+    height: 450px;
     background-color:#b9b29a;
     top:10%;
-    left: 30%;
+    left: 25%;
     align-content: center;
     text-align: center;
 
@@ -97,6 +97,7 @@ input{
 
 #address-summary{
   font-size: 22px;
+  margin-top: 50px;
 }
 
 #customer-summary{
@@ -104,8 +105,9 @@ input{
 }
 
 #close-btn{
-  top: 150px;
-  left: 50%;
+  position: absolute;
+  top: 5%;
+  left: 90%;
 }
 
 .name-container{
@@ -198,8 +200,8 @@ p{
   cursor: not-allowed;
   background-color: khaki;
   font-size: 18px;
-    width: 150px;
-    padding: 5px;
+  width: 150px;
+  padding: 5px;
     /* cursor: not-allowed !important; */
 }
 
@@ -235,3 +237,19 @@ footer{
 label{
   margin-right: 5px;
 }
+
+
+.no-scroll{
+/* scroll="no"; */
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+#myForm{
+  margin-left: 100px;
+  /* width: 475px; */
+  /* margin: auto; */
+  /* border: 1px solid red; */
+}
+
