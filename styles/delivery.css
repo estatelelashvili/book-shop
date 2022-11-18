@@ -4,6 +4,28 @@ body{
 
 }
 
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+header button{
+  margin-right: 100px;
+  height: 40px;
+  width: 40px;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+header button img{
+  height: 30px;
+  width: 30px;
+}
+
 
 .input-name{
   display: flex;

@@ -63,9 +63,6 @@ function appendData(data) {
   grandCartCont.setAttribute('id', 'grand-id');
   grandCartCont.className = 'grand-cart-container';
 
-  // alert('hi');
-
-  // if (!checkVisible(bgImage)) grandCartCont.style.visibility = 'visible';
   let cartContainer = document.createElement('div');
   cartContainer.className = 'cart-container';
 
@@ -77,7 +74,10 @@ function appendData(data) {
 
   let btnOrder = document.createElement('button');
   let itemCount = 0;
-  let btnToggleCartText = document.createTextNode('My Bag');
+
+  let btnToggleCartText = document.createElement('p');
+  btnToggleCartText.textContent = 'My Bag';
+  btnToggleCartText.className = 'btn-toggle-cart-text';
   let itemCountText = document.createElement('p');
   itemCountText.textContent = `${itemCount}`;
   itemCountText.className = 'item-count-text';
@@ -89,31 +89,39 @@ function appendData(data) {
   btnOrder.textContent = 'Confirm order';
   btnToggleCart.className = 'btn-ToggleCart';
 
-  btnOrder.style.cssText = `position:absolute;  width: 115px; left: 15%;
-  bottom: 10px;`;
+  btnOrder.className = 'btn-order';
 
   let cart = document.createElement('div');
   let babyCart = document.createElement('div');
 
   //TOTAL PRICE TAG
   let totalPrice = document.createElement('p');
+  let miniCartCloseX = document.createElement('button');
+  miniCartCloseX.className = 'mini-cart-close-x';
+  miniCartCloseX.textContent = 'X';
   let hrCart = document.createElement('hr');
   let unorderedList = document.createElement('ul');
+  unorderedList.className = 'unordered-list';
   let listItem1 = document.createElement('li');
   let listItem2 = document.createElement('li');
   let listItem3 = document.createElement('li');
+  listItem1.className = 'list-item-1';
+  listItem2.className = 'list-item-2';
+  listItem3.className = 'list-item-3';
   listItem1.textContent = 'Image';
-  listItem2.textContent = 'Name';
+  listItem2.textContent = 'Title/Author';
   listItem3.textContent = 'Price';
   unorderedList.appendChild(listItem1);
   unorderedList.appendChild(listItem2);
   unorderedList.appendChild(listItem3);
 
   let clearAll = document.createElement('button');
+
   clearAll.innerText = 'Clear All';
   clearAll.onclick = () => {
     testTable.innerHTML = '';
     itemCount = 0;
+    checkButtons();
     specialPriceTag = 0;
     totalPrice.textContent = `Total: ${specialPriceTag}$`;
 
@@ -125,7 +133,13 @@ function appendData(data) {
   let val = 0;
   totalPrice.innerText = `Total: ${specialPriceTag}$`;
   let total = document.createElement('p');
-  cart.appendChild(totalPrice);
+  let totalPriceContainer = document.createElement('div');
+  totalPriceContainer.className = 'total-price-container';
+  totalPriceContainer.appendChild(totalPrice);
+  miniCartCloseX.addEventListener('click', toggleCart);
+  totalPriceContainer.appendChild(miniCartCloseX);
+  cart.appendChild(totalPriceContainer);
+
   cart.appendChild(hrCart);
   cart.appendChild(unorderedList);
 
@@ -136,24 +150,38 @@ function appendData(data) {
   babyCart.setAttribute('id', agent_1);
 
   cart.style.cssText = `display: none;`;
-  clearAll.style.cssText = `position:absolute;  width: 75px; left: 55%;
-  bottom: 10px;`;
+  clearAll.className = 'btn-clear-all';
+
   cart.appendChild(clearAll);
   cart.appendChild(btnOrder);
 
+  function checkButtons() {
+    if (itemCount) {
+      clearAll.style.visibility = 'visible';
+      btnOrder.style.visibility = 'visible';
+      unorderedList.style.visibility = 'visible';
+    } else {
+      clearAll.style.visibility = 'hidden';
+      btnOrder.style.visibility = 'hidden';
+      unorderedList.style.visibility = 'hidden';
+    }
+  }
+  checkButtons();
   //TABLE
 
   let testTable = document.createElement('table');
-
+  testTable.className = 'test-table';
   //TOGGLE CART BUTTON
 
-  btnToggleCart.onclick = function () {
+  function toggleCart() {
     if (cart.style.display === 'block') {
       cart.style.display = 'none';
     } else {
       cart.style.display = 'block';
     }
-  };
+  }
+
+  btnToggleCart.onclick = toggleCart;
 
   //REDIRECT TO ORDER PAGE
 
@@ -203,6 +231,7 @@ function appendData(data) {
     price2.innerHTML = data[+agent_1].price + '$';
     bookName2.innerHTML = data[+agent_1].title;
     btnX2.innerText = 'X';
+    btnX2.className = 'btn-x';
 
     if (cart.textContent.includes(price2.textContent)) {
     } else {
@@ -231,6 +260,7 @@ function appendData(data) {
       let empArr = [];
       const collection = document.getElementsByClassName('elm-p');
       itemCount = collection.length;
+      checkButtons();
       itemCountText.textContent = `${itemCount}`;
 
       for (let i = 0; i < collection.length; i++) {
@@ -255,6 +285,7 @@ function appendData(data) {
         middleRow2.remove();
         const collection = document.getElementsByClassName('elm-p');
         itemCount = collection.length;
+        checkButtons();
         itemCountText.textContent = `${itemCount}`;
       };
     }
@@ -270,19 +301,15 @@ function appendData(data) {
     const btnContainer = document.createElement('div');
     btnContainer.className = 'btn-container';
     const card = document.createElement('div');
-
-    // const overlay = document.createElement('div');
-    // const text = document.createElement('div');
     const image = document.createElement('img');
+
     image.setAttribute('id', 'thumbnail-image-id');
     image.className = 'thumbnail-image';
+
     const title = document.createElement('h4');
     const author = document.createElement('h5');
     const price = document.createElement('span');
 
-    // const slideUpPrice = document.createElement('p');
-    // const slideUpTitle = document.createElement('p');
-    // const slideUpAuthor = document.createElement('p');
     const btnAddToCart = document.createElement('button');
     const imgAddToCart = document.createElement('img');
     btnAddToCart.className = 'btn-add-2-basket';
@@ -294,15 +321,10 @@ function appendData(data) {
     btnAddToCart.appendChild(add2Cartext);
     let imagSrc = data[i].imageLink;
 
-    // slideUpPrice.className = 'slide-up-price';
-    // slideUpTitle.className = 'slide-up-title';
-    // slideUpAuthor.className = 'slide-up-author';
-
-    // slideUpPrice.innerHTML = data[i].price + '$';
-    // slideUpTitle.innerHTML = data[i].title;
-    // slideUpAuthor.innerHTML = data[i].author;
-
     image.setAttribute('id', `${i}`);
+    card.setAttribute('id', `${i}`);
+    image.draggable = 'true';
+    card.draggable = 'true';
 
     let detailedInformation = document.createElement('div');
     let btnInfoX = document.createElement('button');
@@ -345,6 +367,7 @@ function appendData(data) {
 
     btnAddToCart.addEventListener('click', addBookToBasket);
     function addBookToBasket() {
+      checkButtons();
       let elmInfo = document.createElement('div');
       let elmP = document.createElement('div');
       let elmT = document.createElement('div');
@@ -362,9 +385,7 @@ function appendData(data) {
       elmP.innerHTML = price.textContent;
       elmT.innerHTML = title.textContent;
       elmA.innerHTML = author.textContent;
-      // elmP.innerHTML = slideUpPrice.textContent;
-      // elmT.innerHTML = slideUpTitle.textContent;
-      // elmA.innerHTML = slideUpAuthor.textContent;
+
       elmImage.src = imagSrc;
       elmImage.style.cssText = `background-color: red;`;
       if (cart.textContent.includes(price.textContent)) {
@@ -393,6 +414,7 @@ function appendData(data) {
         let empArr = [];
         const collection = document.getElementsByClassName('elm-p');
         itemCount = collection.length;
+        checkButtons();
         itemCountText.textContent = `${itemCount}`;
 
         for (let i = 0; i < collection.length; i++) {
@@ -417,6 +439,7 @@ function appendData(data) {
           middleRow.remove();
           const collection = document.getElementsByClassName('elm-p');
           itemCount = collection.length;
+          checkButtons();
           itemCountText.textContent = `${itemCount}`;
         };
       }
@@ -426,8 +449,6 @@ function appendData(data) {
     info.className = 'info';
     card.className = 'card';
 
-    // overlay.className = 'overlay';
-    // text.className = 'text';
     title.className = 'title';
     author.className = 'author';
     price.className = 'price';
@@ -443,15 +464,7 @@ function appendData(data) {
     btnContainer.appendChild(btnAddToCart);
     btnContainer.appendChild(btnShowMore);
     info.appendChild(btnContainer);
-    // text.appendChild(slideUpPrice);
-    // text.appendChild(slideUpTitle);
-    // text.appendChild(slideUpAuthor);
-    // text.appendChild(btnAddToCart);
-    // text.appendChild(btnShowMore);
 
-    // overlay.appendChild(text);
-
-    // card.appendChild(overlay);
     card.appendChild(info);
 
     wrapper.appendChild(card);
@@ -466,9 +479,7 @@ function appendData(data) {
   dragHereMSG.visibility = 'hidden';
 
   function dragEnded(ev) {
-    // grandCartCont.style.cssText = 'border: none';
     grandCartCont.className = 'grand-cart-container';
-    // container.style.cssText = 'margin-top: 20px';
     container.className = 'container';
     btnToggleCart.style.visibility = 'visible';
     dragHereMSG.innerText = '';
@@ -477,11 +488,9 @@ function appendData(data) {
   }
   function drag(ev) {
     grandCartCont.className = 'grand-cart-container-alter';
-    // grandCartCont.style.cssText =
-    //   'border: silver dashed 2px; height: 250px; width: 250px; background-color: aliceblue; position: fixed;';
     btnToggleCart.style.visibility = 'hidden';
     container.className = 'container-alt';
-    // container.style.cssText = 'margin-top: 93px';
+
     cart.style.display = 'none';
     dragHereMSG.innerText = 'drag & drop here...';
     dragHereMSG.visibility = 'visible';

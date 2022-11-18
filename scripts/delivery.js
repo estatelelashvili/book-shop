@@ -16,6 +16,10 @@ let validHouse = false;
 let validFlate = false;
 let validPayment = false;
 
+const goHome = () => {
+  location.href = '../pages/catalogPage.html';
+};
+
 window.onload = function () {
   checkBTN();
   nameField.focus();
