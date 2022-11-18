@@ -2,11 +2,20 @@
 let btnSubmit = document.getElementById('btn-submit');
 let nameField = document.getElementById('field_name');
 let SurNameField = document.getElementById('field_surname');
+let dateField = document.getElementById('field_date');
 let StreetField = document.getElementById('field_street');
 let HouseField = document.getElementById('field_house');
 let FlatField = document.getElementById('field_flat');
 let PaymentField = document.getElementById('field_payment');
+let cashField = document.getElementById('cash-radio');
+let cardField = document.getElementById('card-radio');
 let GiftsField = document.getElementById('field_gifts');
+let gift1 = document.getElementById('check-pack');
+let gift2 = document.getElementById('check-postcard');
+let gift3 = document.getElementById('check-discount-radio');
+let gift4 = document.getElementById('check-pen');
+
+let homeBtn = document.getElementById('go-home');
 
 let validName = false;
 let validSurName = false;
@@ -16,16 +25,38 @@ let validHouse = false;
 let validFlate = false;
 let validPayment = false;
 
-const goHome = () => {
-  location.href = '../pages/catalogPage.html';
-};
+let fieldArr = [
+  nameField.value,
+  SurNameField.value,
+  dateField.value,
+  HouseField.value,
+  StreetField.value,
+  FlatField.value,
+  cardField.value,
+  cashField.value,
+];
+
+function resetForm() {
+  nameField.value = '';
+  SurNameField.value = '';
+  dateField.value = '';
+  HouseField.value = '';
+  StreetField.value = '';
+  FlatField.value = '';
+  cardField.checked = false;
+  cashField.checked = false;
+  gift1.checked = false;
+  gift2.checked = false;
+  gift3.checked = false;
+  gift4.checked = false;
+}
 
 window.onload = function () {
+  resetForm();
   checkBTN();
   nameField.focus();
 };
 let warnPopName = document.getElementById('warn-pop-up-name');
-// nameField.addEventListener('mouseleave', checkBTN);
 nameField.addEventListener('input', function () {
   let val = document.getElementById('field_name').value;
   let el = document.getElementById('field_name');
@@ -72,7 +103,6 @@ SurNameField.addEventListener('input', function () {
   checkBTN();
 });
 
-// SurNameField.addEventListener('mouseleave', checkBTN);
 SurNameField.addEventListener('focusout', function () {
   let val = document.getElementById('field_surname').value;
   let el = document.getElementById('field_surname');
@@ -88,10 +118,8 @@ SurNameField.addEventListener('focusout', function () {
   checkBTN();
 });
 
-let dateField = document.getElementById('field_date');
 let warnPopDate = document.getElementById('warn-pop-up-date');
 
-// dateField.addEventListener('mouseleave', checkBTN);
 dateField.addEventListener('focusout', function () {
   let el = document.getElementById('field_date');
   let today = new Date();
@@ -129,13 +157,16 @@ dateField.addEventListener('change', function () {
 
 let warnPopStreet = document.getElementById('warn-pop-up-street');
 
-// StreetField.addEventListener('mouseleave', checkBTN);
 StreetField.addEventListener('input', function () {
   let val = document.getElementById('field_street').value;
   let el = document.getElementById('field_street');
-  // /(?!.*-$)^[1-9]+[-0-9]*$/.test(val);
-  // if (/^[0-9a-zA-Z]{1,}[\s0-9a-zA-Z]{1,}$/.test(val)) {
-  if (/^[^-\s]\s*(?:[\w\.]\s*){4,}$/.test(val)) {
+  let words = val.split(' ');
+  words = words.filter((entry) => entry.trim() != '');
+  const wordCount = words.length;
+  const whiteSpaceCount = val.split('').filter((x) => x === ' ').length;
+  // console.log('words: ', wordCount, 'whites: ', whiteSpaceCount);
+
+  if (/^[0-9a-zA-Z\s]{5,}$/.test(val) && whiteSpaceCount < wordCount) {
     el.className = 'valid';
     warnPopStreet.style.visibility = 'hidden';
     validStreet = true;
@@ -150,8 +181,12 @@ StreetField.addEventListener('focusout', function () {
   let val = document.getElementById('field_street').value;
   let el = document.getElementById('field_street');
 
-  // if (/^[^-\s][0-9a-zA-Z\s]{5,}$/.test(val)) {
-  if (/^[^-\s]\s*(?:[\w\.]\s*){4,}$/.test(val)) {
+  let words = val.split(' ');
+  words = words.filter((entry) => entry.trim() != '');
+  const wordCount = words.length;
+  const whiteSpaceCount = val.split('').filter((x) => x === ' ').length;
+
+  if (/^[0-9a-zA-Z\s]{5,}$/.test(val) && whiteSpaceCount < wordCount) {
     el.className = 'valid';
     warnPopStreet.style.visibility = 'hidden';
     validStreet = true;
@@ -162,21 +197,6 @@ StreetField.addEventListener('focusout', function () {
   }
   checkBTN();
 });
-
-// StreetField.addEventListener('focusout', function () {
-//   let val = document.getElementById('field_street').value;
-//   let el = document.getElementById('field_street');
-//   if (val.length < 5) {
-//     el.className = 'invalid';
-//     warnPopStreet.style.visibility = 'visible';
-//     validStreet = false;
-//   } else {
-//     el.className = 'valid';
-//     warnPopStreet.style.visibility = 'hidden';
-//     validStreet = true;
-//   }
-//   checkBTN();
-// });
 
 let warnPopHouse = document.getElementById('warn-pop-up-house');
 
@@ -194,7 +214,7 @@ HouseField.addEventListener('input', function () {
   }
   checkBTN();
 });
-// HouseField.addEventListener('mouseleave', checkBTN);
+
 HouseField.addEventListener('focusout', function () {
   let val = document.getElementById('field_house').value;
   let el = document.getElementById('field_house');
@@ -215,7 +235,6 @@ let warnPopFlat = document.getElementById('warn-pop-up-flat');
 FlatField.addEventListener('input', function () {
   let val = document.getElementById('field_flat').value;
   let el = document.getElementById('field_flat');
-  // if (/^[1-9–]+[-0-9–]*$/.test(val)) {
   if (/(?!.*-$)^[1-9]+[-0-9]*$/.test(val)) {
     el.className = 'valid';
     warnPopFlat.style.visibility = 'hidden';
@@ -228,7 +247,6 @@ FlatField.addEventListener('input', function () {
   checkBTN();
 });
 
-// FlatField.addEventListener('mouseleave', checkBTN);
 FlatField.addEventListener('focusout', function () {
   PaymentField.focus();
   let val = document.getElementById('field_flat').value;
@@ -247,11 +265,9 @@ FlatField.addEventListener('focusout', function () {
 
 let cashSelected = false;
 let cardSelected = false;
-let cashField = document.getElementById('cash-radio');
-let cardField = document.getElementById('card-radio');
+
 let warnPopPayment = document.getElementById('warn-pop-up-payment');
 
-// cashField.addEventListener('mouseleave', checkBTN);
 cashField.addEventListener('change', function () {
   if (cashField.checked) {
     cashSelected = true;
@@ -262,7 +278,6 @@ cashField.addEventListener('change', function () {
   checkBTN();
 });
 
-// cardField.addEventListener('mouseleave', checkBTN);
 cardField.addEventListener('change', function () {
   if (cardField.checked) {
     cardSelected = true;
@@ -273,7 +288,6 @@ cardField.addEventListener('change', function () {
   checkBTN();
 });
 
-// PaymentField.addEventListener('mouseleave', checkBTN);
 PaymentField.addEventListener('focusout', checkBTN);
 
 PaymentField.addEventListener('focusout', function () {
@@ -293,17 +307,6 @@ function selectiveCheck(event) {
   }
 }
 
-let fieldArr = [
-  nameField.value,
-  SurNameField.value,
-  dateField.value,
-  HouseField.value,
-  StreetField.value,
-  FlatField.value,
-  cardField.value,
-  cashField.value,
-];
-
 function checkBTN() {
   if (
     validName &&
@@ -322,22 +325,32 @@ function checkBTN() {
   }
 }
 
+const goHome = () => {
+  resetForm();
+  location.href = '../pages/catalogPage.html';
+};
+
+homeBtn.addEventListener('click', goHome);
+
 let closePopUpBtn = document.getElementById('close-btn');
 let addressInfo = document.getElementById('address-summary');
 let customerInfo = document.getElementById('customer-summary');
 let PopUp = document.getElementById('popM');
 
 btnSubmit.addEventListener('click', (ev) => {
-  addressInfo.innerText = `The delivery address is: ${StreetField.value} street, house ${HouseField.value}, flat ${FlatField.value}.`;
+  addressInfo.innerText = `The delivery address is: ${StreetField.value} street, house #${HouseField.value}, flat #${FlatField.value}.`;
   customerInfo.innerText = `Customer: ${nameField.value} ${SurNameField.value}.`;
   PopUp.style.display = 'block';
+  document.body.classList.add('no-scroll');
   ev.preventDefault();
 });
 
 closePopUpBtn.addEventListener('click', () => {
+  document.body.classList.remove('no-scroll');
+  const form = document.getElementById('myForm');
+  form.submit();
   PopUp.style.display = 'none';
   nameField.focus();
-  // location.href = '../pages/catalogPage.html';
 });
 
 function handleEnter(event) {
@@ -345,7 +358,6 @@ function handleEnter(event) {
     const form = document.getElementById('myForm');
     const index = [...form].indexOf(event.target);
     form.elements[index + 1].focus();
-    console.log(form.elements);
     event.preventDefault();
   }
 }

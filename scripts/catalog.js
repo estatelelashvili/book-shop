@@ -98,7 +98,7 @@ function appendData(data) {
   let totalPrice = document.createElement('p');
   let miniCartCloseX = document.createElement('button');
   miniCartCloseX.className = 'mini-cart-close-x';
-  miniCartCloseX.textContent = 'X';
+  miniCartCloseX.innerHTML = '&#10006';
   let hrCart = document.createElement('hr');
   let unorderedList = document.createElement('ul');
   unorderedList.className = 'unordered-list';
@@ -230,7 +230,8 @@ function appendData(data) {
     author2.innerHTML = data[+agent_1].author;
     price2.innerHTML = data[+agent_1].price + '$';
     bookName2.innerHTML = data[+agent_1].title;
-    btnX2.innerText = 'X';
+    // btnX2.innerText = 'X';
+    btnX2.innerHTML = '&#10006';
     btnX2.className = 'btn-x';
 
     if (cart.textContent.includes(price2.textContent)) {
@@ -381,7 +382,8 @@ function appendData(data) {
       let btnX = document.createElement('button');
 
       btnX.className = 'btn-x';
-      btnX.innerHTML = 'X';
+      // btnX.innerHTML = 'X';
+      btnX.innerHTML = '&#10006';
       elmP.innerHTML = price.textContent;
       elmT.innerHTML = title.textContent;
       elmA.innerHTML = author.textContent;
