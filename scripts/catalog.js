@@ -126,7 +126,7 @@ function appendData(data) {
     totalPrice.textContent = `Total: ${specialPriceTag}$`;
 
     itemCountText.textContent = `${itemCount}`;
-    cart.style.display = 'none';
+    // cart.style.display = 'none';
   };
 
   let specialPriceTag = 0;
