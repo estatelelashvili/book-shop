@@ -331,7 +331,7 @@ function appendData(data) {
     let btnInfoX = document.createElement('button');
     detailedInformation.className = 'detailed-information';
     btnInfoX.className = 'btn-info-x';
-    btnInfoX.textContent = 'close';
+    btnInfoX.innerHTML = '&#10006';
 
     btnInfoX.addEventListener('click', hideDetails);
     function hideDetails() {

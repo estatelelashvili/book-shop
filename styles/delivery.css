@@ -67,7 +67,6 @@ header button img{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 }
 
 main{
@@ -92,7 +91,7 @@ input{
     left: 25%;
     align-content: center;
     text-align: center;
-
+    border-radius: 10px;
 }
 
 #address-summary{
@@ -108,6 +107,9 @@ input{
   position: absolute;
   top: 5%;
   left: 90%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
   cursor: pointer;
 }
 
@@ -188,6 +190,8 @@ p{
 .submit-btn-container{
   display: flex;
   justify-content: center;
+  width: 160px;
+  margin: auto;
 }
 
 .submit-btn{
@@ -238,6 +242,244 @@ label{
 }
 
 #myForm{
-  margin-left: 100px;
+  width: 480px ;
+  margin: auto;
+}
+
+@media(min-width: 320px){
+  h1{
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  .pop-up{
+    display: none;
+    position: fixed;
+    width: 300px;
+    height: 450px;
+    margin: auto;
+    background-color:#b9b29a;
+    top:8%;
+    left: 2%;
+    align-content: center;
+    text-align: center;
+    border-radius: 10px;
+  }
+  #close-btn{
+    position: absolute;
+    top: 1%;
+    left:90%;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  #myForm{
+    width: 300px ;
+    margin: auto;
+  }
+
+  .input-date{
+    margin-left:20px;
+  }
+  .input-house{
+    margin-left: 48px;
+  }
+  .input-flat{
+    margin-left: 48px;
+  }
+}
+
+@media(min-width: 458px){
+    .pop-up{
+      display: none;
+      position: fixed;
+      width: 400px;
+      height: 450px;
+      margin: auto;
+      background-color:#b9b29a;
+      top:8%;
+      left: 10%;
+      align-content: center;
+      text-align: center;
+      border-radius: 10px;
+  }
+  #myForm{
+    width: 480px ;
+    margin: auto;
+  }
+  .input-name{
+    display: flex;
+     margin-left: 60px;
+  }
+  .input-surname{
+    display: flex;
+      margin-left: 40px;
+    }
+  .input-date{
+    display: flex;
+      margin-left: 7px;
+    }
+  .input-street{
+    display: flex;
+      margin-left: 58px;
+    }
+  .input-house{
+    display: flex;
+      margin-left: 0;
+    }
+  .input-flat{
+    display: flex;
+      margin-left: 16px;
+    }
+    h1{
+      margin-left: 140px;
+      color: #008cba;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 22px;
+     }
+}
+@media(min-width: 568px){
+    .pop-up{
+      display: none;
+      position: fixed;
+      width: 500px;
+      height: 450px;
+      margin: auto;
+      background-color:#b9b29a;
+      top:8%;
+      left: 10%;
+      align-content: center;
+      text-align: center;
+      border-radius: 10px;
+  }
+  #myForm{
+    width: 480px ;
+    margin: auto;
+  }
+  .input-name{
+    display: flex;
+     margin-left: 60px;
+  }
+  .input-surname{
+    display: flex;
+      margin-left: 40px;
+    }
+  .input-date{
+    display: flex;
+      margin-left: 7px;
+    }
+  .input-street{
+    display: flex;
+      margin-left: 58px;
+    }
+  .input-house{
+    display: flex;
+      margin-left: 0;
+    }
+  .input-flat{
+    display: flex;
+      margin-left: 16px;
+    }
+    h1{
+      margin-left: 140px;
+      color: #008cba;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 26px;
+     }
+}
+
+@media(min-width: 768px){
+    .pop-up{
+      display: none;
+      position: fixed;
+      width: 650px;
+      height: 450px;
+      margin: auto;
+      background-color:#b9b29a;
+      top:8%;
+      left: 15%;
+      align-content: center;
+      text-align: center;
+      border-radius: 10px;
+  }
+  #myForm{
+    width: 480px ;
+    margin: auto;
+  }
+  .input-name{
+    display: flex;
+     margin-left: 60px;
+  }
+  .input-surname{
+    display: flex;
+      margin-left: 40px;
+    }
+  .input-date{
+    display: flex;
+      margin-left: 7px;
+    }
+  .input-street{
+    display: flex;
+      margin-left: 58px;
+    }
+  .input-house{
+    display: flex;
+      margin-left: 0;
+    }
+  .input-flat{
+    display: flex;
+      margin-left: 16px;
+    }
+    h1{
+      margin-left: 140px;
+      color: #008cba;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 30px;
+     }
+}
+
+@media(min-width: 900px){
+  .pop-up{
+    display: none;
+    position: fixed;
+    width: 650px;
+    height: 450px;
+    margin: auto;
+    background-color:#b9b29a;
+    top:8%;
+    left: 25%;
+    align-content: center;
+    text-align: center;
+    border-radius: 10px;
+  }
+}
+
+@media(min-width: 1280px){
+    .pop-up{
+      display: none;
+      position: fixed;
+      width: 700px;
+      height: 450px;
+      background-color:#b9b29a;
+      top:10%;
+      left: 25%;
+      align-content: center;
+      text-align: center;
+      border-radius: 10px;
+    }
+    h1{
+      margin-left: 140px;
+      color: #008cba;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 32px;
+     }
 }
 
