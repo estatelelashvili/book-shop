@@ -160,11 +160,12 @@ let warnPopStreet = document.getElementById('warn-pop-up-street');
 StreetField.addEventListener('input', function () {
   let val = document.getElementById('field_street').value;
   let el = document.getElementById('field_street');
+
   let words = val.split(' ');
   words = words.filter((entry) => entry.trim() != '');
+
   const wordCount = words.length;
   const whiteSpaceCount = val.split('').filter((x) => x === ' ').length;
-  // console.log('words: ', wordCount, 'whites: ', whiteSpaceCount);
 
   if (/^[0-9a-zA-Z\s]{5,}$/.test(val) && whiteSpaceCount < wordCount) {
     el.className = 'valid';
